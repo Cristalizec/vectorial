@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario – Cálculo Vectorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2>Formulario</h2>
+
+    <ul>
+      <li class="sidebar-section">Contenido</li>
+      <li><a href="#u1">Unidad 1</a></li>
+      <li><a href="#u2">Unidad 2</a></li>
+
+      <li class="sidebar-section">Navegación</li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="U1.html">Unidad 1</a></li>
+      <li><a href="U2.html">Unidad 2</a></li>
+      <li><a href="calculadoras.html">Calculadoras</a></li>
+      <li><a href="juegos.html">Minijuegos</a></li>
+      <li><a href="chat.html">Chat Matemático</a></li>
+      <li><a href="config.html">Configuración</a></li>
+    </ul>
+
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro/oscuro</button>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <main class="content">
+
+    <section>
+      <h1>Formulario de Cálculo Vectorial</h1>
+      <p>Aquí tienes todas las fórmulas esenciales de la Unidad 1 y Unidad 2.</p>
+      <button class="btn-start" onclick="window.print()">📄 Guardar / Imprimir PDF</button>
+    </section>
+
+    <!-- UNIDAD 1 -->
+    <section id="u1">
+      <span class="tag">Unidad 1</span>
+      <h2>Vectores, Rectas y Planos</h2>
+
+      <div class="formula-grid">
+
+        <div class="formula-card">
+          <h3>Magnitud de un vector</h3>
+          <p class="formula">|v| = √(x² + y² + z²)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Vector unitario</h3>
+          <p class="formula">u = v / |v|</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Suma de vectores</h3>
+          <p class="formula">(x₁ + x₂ , y₁ + y₂ , z₁ + z₂)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Producto escalar</h3>
+          <p class="formula">a·b = ax·bx + ay·by + az·bz</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Producto vectorial</h3>
+          <p class="formula">(a × b) = (aybz − azby, azbx − axbz, axby − aybx)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Ecuación de la recta</h3>
+          <p class="formula">r = r₀ + t·v</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Recta en forma simétrica</h3>
+          <p class="formula">(x − x₀)/a = (y − y₀)/b = (z − z₀)/c</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Ecuación del plano</h3>
+          <p class="formula">Ax + By + Cz + D = 0</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Ángulo entre dos vectores</h3>
+          <p class="formula">cos(θ) = (a·b) / (|a||b|)</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- UNIDAD 2 -->
+    <section id="u2">
+      <span class="tag">Unidad 2</span>
+      <h2>Curvas planas, Paramétricas y Polares</h2>
+
+      <div class="formula-grid">
+
+        <div class="formula-card">
+          <h3>Curva cartesiana</h3>
+          <p class="formula">y = f(x)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Parametrización</h3>
+          <p class="formula">(x(t), y(t))</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Velocidad paramétrica</h3>
+          <p class="formula">v(t) = (x'(t), y'(t))</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Aceleración paramétrica</h3>
+          <p class="formula">a(t) = (x''(t), y''(t))</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Ecuaciones polares</h3>
+          <p class="formula">x = r cos(θ), y = r sin(θ)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Derivada polar</h3>
+          <p class="formula">dy/dx = (dr/dθ sinθ + r cosθ) / (dr/dθ cosθ − r sinθ)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Curva rosa</h3>
+          <p class="formula">r(θ) = a cos(kθ)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Cardioide</h3>
+          <p class="formula">r(θ) = 1 + cos(θ)</p>
+        </div>
+
+        <div class="formula-card">
+          <h3>Elipse paramétrica</h3>
+          <p class="formula">x = a cos t, y = b sin t</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+</script>
+
+</body>
+</html>

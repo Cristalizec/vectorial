@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url("fondito.png") no-repeat center center fixed;
+    background-size: cover;
+    color: #2c3e50;
+}
+
+/* Layout con sidebar */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Menú lateral */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, rgba(5, 25, 55, 0.92), rgba(20, 70, 140, 0.9));
+    color: #fff;
+    padding: 20px 18px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: 4px 0 18px rgba(0,0,0,0.4);
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin: 0 0 18px 0;
+    letter-spacing: 0.08em;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-section {
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.75;
+}
+
+.sidebar ul li {
+    margin: 6px 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    color: #e7ecff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: background 0.25s, transform 0.1s;
+}
+
+.sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateX(2px);
+}
+
+/* Contenido */
+.content {
+    margin-left: 280px;
+    padding: 30px 28px;
+    width: 100%;
+}
+
+section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 24px 22px;
+    margin-bottom: 26px;
+    border-radius: 18px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+    backdrop-filter: blur(6px);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+section h1, section h2 {
+    color: #1c3148;
+    margin-top: 4px;
+}
+
+section p {
+    line-height: 1.6;
+}
+
+/* Etiquetitas */
+.tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(77, 144, 254, 0.15);
+    color: #1b3c70;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+/* Cajas varias (las refino aquí también, por si no están inline) */
+.example-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-left: 4px solid #4D90FE;
+    padding: 12px 16px;
+    margin: 18px 0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
+
+.formula {
+    background: rgba(77, 144, 254, 0.08);
+    border-radius: 6px;
+    padding: 6px 10px;
+    display: inline-block;
+    font-family: "Consolas", "Courier New", monospace;
+    margin: 4px 0;
+}
+
+ul.examples {
+    list-style: "➤ ";
+    padding-left: 1.2rem;
+}
+
+/* Simuladores */
+.simulator-box {
+    margin-top: 14px;
+    border-radius: 14px;
+    padding: 14px 16px;
+    background: rgba(240, 247, 255, 0.96);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+.sim-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sim-form label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.sim-form input, .sim-form select {
+    border-radius: 8px;
+    border: 1px solid #d0d7e2;
+    padding: 4px 8px;
+    min-width: 70px;
+}
+
+.sim-form button {
+    border: none;
+    border-radius: 999px;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #4D90FE, #6a7bff);
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: transform 0.1s, box-shadow 0.2s, filter 0.2s;
+}
+
+.sim-form button:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.sim-plot {
+    width: 100%;
+    height: 360px;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 18px;
+    }
+}
+/* ===== SECCIÓN DEL AUTOR / CREADOR ===== */
+.creator-box {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 15px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.creator-logo {
+    width: 90px;
+    height: 90px;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.creator-desc {
+    margin-top: 12px;
+    text-align: justify;
+    line-height: 1.5;
+}

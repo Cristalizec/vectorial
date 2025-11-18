@@ -1,0 +1,6 @@
+<svg width="120" height="120" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="90" fill="#8f9bff" opacity="0.25"/>
+  <text x="50%" y="50%" font-size="85" font-family="Poppins, sans-serif" fill="#4b4fff" text-anchor="middle" dy="0.32em">
+    AC
+  </text>
+</svg>

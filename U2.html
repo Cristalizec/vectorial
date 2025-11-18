@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidad 2 - Curvas y Coordenadas</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h2>Unidad 2</h2>
+    <ul>
+      <li class="sidebar-section">Contenido</li>
+      <li><a href="#u2-intro">2. Introducción</a></li>
+      <li><a href="#u2-curvas">2.1 Curvas planas</a></li>
+      <li><a href="#u2-param">2.2 Ecuaciones paramétricas</a></li>
+      <li><a href="#u2-polar">2.3 Coordenadas polares</a></li>
+
+      <li class="sidebar-section">Simuladores</li>
+      <li><a href="#sim-parabola">Parábola y = ax²+bx+c</a></li>
+      <li><a href="#sim-elipse">Elipse paramétrica</a></li>
+      <li><a href="#sim-rosa">Rosa polar</a></li>
+
+      <li class="sidebar-section">Navegación</li>
+      <li><a href="u1.html">Unidad 1</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="calculadoras.html">Calculadoras</a></li>
+      <li><a href="juegos.html">Minijuegos</a></li>
+      <li><a href="chat.html">Chat matemático</a></li>
+      <li><a href="config.html">Configuración</a></li>
+      <li><a href="index.html">Inicio</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro / oscuro</button>
+    </div>
+  </nav>
+
+  <main class="content">
+    <section id="u2-intro">
+      <span class="tag">Unidad 2</span>
+      <h1>Curvas planas, ecuaciones paramétricas y coordenadas polares</h1>
+      <p>Estudiamos cómo describir trayectorias en el plano mediante ecuaciones cartesianas, paramétricas y polares.
+         Cada representación ofrece una perspectiva diferente sobre la geometría y el movimiento.</p>
+    </section>
+
+    <section id="u2-curvas">
+      <span class="tag">2.1</span>
+      <h2>Curvas planas</h2>
+      <p>Una curva plana puede describirse mediante una ecuación cartesiana <span class="formula">y = f(x)</span> o una relación
+         implícita <span class="formula">F(x, y) = 0</span>. Ejemplos clásicos: rectas, parábolas, circunferencias y elipses.</p>
+      <div class="example-box">
+        <p>La parábola <span class="formula">y = x²</span> se abre hacia arriba y tiene vértice en el origen.</p>
+      </div>
+    </section>
+
+    <section id="u2-param">
+      <span class="tag">2.2</span>
+      <h2>Ecuaciones paramétricas</h2>
+      <p>Una curva paramétrica se describe a partir de dos funciones:</p>
+      <p class="formula">x(t), &nbsp; y(t)</p>
+      <p>Al variar el parámetro t, el punto <span class="formula">(x(t), y(t))</span> recorre la curva.</p>
+      <div class="example-box">
+        <p><b>Circunferencia unitaria:</b>
+          <span class="formula">x(t) = cos t, &nbsp; y(t) = sin t, &nbsp; 0 ≤ t ≤ 2π</span></p>
+      </div>
+    </section>
+
+    <section id="u2-polar">
+      <span class="tag">2.3</span>
+      <h2>Coordenadas polares</h2>
+      <p>En coordenadas polares, cada punto se expresa como <span class="formula">(r, θ)</span>, donde r es la distancia al origen
+         y θ el ángulo respecto al eje x.</p>
+      <p>Relación con cartesianas:</p>
+      <p class="formula">x = r cos θ, &nbsp; y = r sin θ</p>
+      <div class="example-box">
+        <p><b>Cardioide:</b> <span class="formula">r(θ) = 1 + cos θ</span></p>
+      </div>
+    </section>
+
+    <!-- Simuladores -->
+    <section id="sim-parabola">
+      <span class="tag">Simulador</span>
+      <h2>Curva plana: y = ax² + bx + c</h2>
+      <p>Ajusta los parámetros y observa cómo cambia la forma de la parábola.</p>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>a:</label><input type="number" id="a-parab" value="1" step="0.5">
+          <label>b:</label><input type="number" id="b-parab" value="0" step="0.5">
+          <label>c:</label><input type="number" id="c-parab" value="0" step="0.5">
+          <button onclick="graficarParabola()">Graficar</button>
+        </div>
+        <div id="grafica-parabola" class="sim-plot"></div>
+      </div>
+    </section>
+
+    <section id="sim-elipse">
+      <span class="tag">Simulador</span>
+      <h2>Elipse paramétrica</h2>
+      <p>Usamos:</p>
+      <p class="formula">x(t) = a cos t, &nbsp; y(t) = b sin t</p>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>a:</label><input type="number" id="a-ellipse" value="2" step="0.5">
+          <label>b:</label><input type="number" id="b-ellipse" value="1" step="0.5">
+          <button onclick="graficarElipse()">Graficar</button>
+        </div>
+        <div id="grafica-elipse" class="sim-plot"></div>
+      </div>
+    </section>
+
+    <section id="sim-rosa">
+      <span class="tag">Simulador</span>
+      <h2>Curva polar tipo rosa</h2>
+      <p>Usamos la familia:</p>
+      <p class="formula">r(θ) = a cos(k θ)</p>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>a:</label><input type="number" id="a-rose" value="1" step="0.5">
+          <label>k:</label><input type="number" id="k-rose" value="4" step="1">
+          <button onclick="graficarRosa()">Graficar</button>
+        </div>
+        <div id="grafica-rosa" class="sim-plot"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  (function () {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') document.body.classList.add('dark');
+  })();
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  }
+
+  function graficarParabola() {
+    const a = parseFloat(document.getElementById('a-parab').value) || 0;
+    const b = parseFloat(document.getElementById('b-parab').value) || 0;
+    const c = parseFloat(document.getElementById('c-parab').value) || 0;
+    const xs = [], ys = [];
+    for (let x = -5; x <= 5; x += 0.1) {
+      xs.push(x);
+      ys.push(a*x*x + b*x + c);
+    }
+    Plotly.react('grafica-parabola', [{
+      x: xs, y: ys, mode: 'lines', type: 'scatter'
+    }], {
+      margin: { l: 40, r: 10, b: 40, t: 10 },
+      xaxis: { title: 'x' },
+      yaxis: { title: 'y' }
+    });
+  }
+
+  function graficarElipse() {
+    const a = parseFloat(document.getElementById('a-ellipse').value) || 1;
+    const b = parseFloat(document.getElementById('b-ellipse').value) || 1;
+    const xs = [], ys = [];
+    for (let t = 0; t <= 2*Math.PI; t += 0.02) {
+      xs.push(a * Math.cos(t));
+      ys.push(b * Math.sin(t));
+    }
+    Plotly.react('grafica-elipse', [{
+      x: xs, y: ys, mode: 'lines', type: 'scatter'
+    }], {
+      margin: { l: 40, r: 10, b: 40, t: 10 },
+      xaxis: { title: 'x', scaleanchor: 'y' },
+      yaxis: { title: 'y' }
+    });
+  }
+
+  function graficarRosa() {
+    const a = parseFloat(document.getElementById('a-rose').value) || 1;
+    const k = parseInt(document.getElementById('k-rose').value) || 1;
+    const xs = [], ys = [];
+    for (let t = 0; t <= 2*Math.PI; t += 0.005) {
+      const r = a * Math.cos(k * t);
+      xs.push(r * Math.cos(t));
+      ys.push(r * Math.sin(t));
+    }
+    Plotly.react('grafica-rosa', [{
+      x: xs, y: ys, mode: 'lines', type: 'scatter'
+    }], {
+      margin: { l: 40, r: 10, b: 40, t: 10 },
+      xaxis: { title: 'x', scaleanchor: 'y' },
+      yaxis: { title: 'y' }
+    });
+  }
+</script>
+</body>
+</html>

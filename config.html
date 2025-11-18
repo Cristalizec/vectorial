@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2>Configuración</h2>
+
+    <ul>
+      <li class="sidebar-section">Opciones</li>
+      <li><a href="#tema">Tema</a></li>
+      <li><a href="#texto">Tamaño de texto</a></li>
+      <li><a href="#fuente">Tipo de fuente</a></li>
+      <li><a href="#anim">Animaciones</a></li>
+      <li><a href="#reset">Restablecer</a></li>
+
+      <li class="sidebar-section">Navegación</li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="U1.html">Unidad 1</a></li>
+      <li><a href="U2.html">Unidad 2</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="calculadoras.html">Calculadoras</a></li>
+      <li><a href="juegos.html">Minijuegos</a></li>
+      <li><a href="chat.html">Chat</a></li>
+      <li><a href="#creador">Creador</a></li>
+
+    </ul>
+
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro/oscuro</button>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+
+    <!-- Tema -->
+    <section id="tema">
+      <span class="tag">Visual</span>
+      <h2>Tema del sitio</h2>
+
+      <p>Elige entre modo claro y oscuro. También puedes cambiarlo desde la barra lateral.</p>
+
+      <button class="btn-start" onclick="toggleTheme()">Cambiar tema</button>
+    </section>
+
+    <!-- Tamaño del texto -->
+    <section id="texto">
+      <span class="tag">Texto</span>
+      <h2>Tamaño del texto</h2>
+
+      <div class="config-row">
+        <label><b>Tamaño:</b></label>
+        <select id="font-size" onchange="cambiarTamañoTexto()">
+          <option value="16">Normal</option>
+          <option value="18">Grande</option>
+          <option value="20">Muy grande</option>
+          <option value="14">Pequeño</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Tipo de fuente -->
+    <section id="fuente">
+      <span class="tag">Fuente</span>
+      <h2>Tipo de fuente</h2>
+
+      <div class="config-row">
+        <label><b>Fuente:</b></label>
+        <select id="font-family" onchange="cambiarFuente()">
+          <option value="'Poppins', sans-serif">Poppins (default)</option>
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="'Courier New', monospace">Monospace</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Animaciones -->
+    <section id="anim">
+      <span class="tag">Animaciones</span>
+      <h2>Control de animaciones</h2>
+
+      <div class="config-row">
+        <label><b>Activar animaciones:</b></label>
+        <input type="checkbox" id="anim-toggle" onchange="toggleAnim()">
+      </div>
+
+      <div class="config-row">
+        <label><b>Intensidad:</b></label>
+        <input type="range" id="anim-intensity" min="0" max="2" step="0.1" value="1" onchange="cambiarIntensidad()">
+      </div>
+    </section>
+
+<!-- Reset -->
+<section id="reset">
+  <span class="tag">Reset</span>
+  <h2>Restablecer configuración</h2>
+  <p>Esto regresará el tema, texto, fuente y animaciones a los valores predeterminados.</p>
+
+  <button class="btn-start" onclick="resetConfig()">Restablecer configuración</button>
+</section>
+
+<!-- ========== CREADOR ========== -->
+<section id="creador">
+    <span class="tag">Creador</span>
+    <h2>Acerca del Autor</h2>
+
+    <div class="creator-box">
+        <img src="logo.svg" class="creator-logo">
+
+        <p><b>Nombre:</b> Amilcar Alejandro Corona Escobar</p>
+        <p><b>Edad:</b> 18 años</p>
+        <p><b>Ciudad:</b> Frontera Comalapa, Chiapas</p>
+        <p><b>Carrera:</b> Ingeniería en Sistemas Computacionales</p>
+
+        <p class="creator-desc">
+            Este proyecto fue desarrollado por Amilcar con la finalidad de apoyar a los estudiantes en la
+            comprensión de temas de Cálculo Vectorial, proporcionando simuladores interactivos,
+            calculadoras, minijuegos y una enciclopedia digital clara y accesible.<br><br>
+            La intención es hacer el aprendizaje más visual, intuitivo y divertido.
+            <br><br>
+            ¡Gracias por visitar este proyecto educativo!
+        </p>
+    </div>
+</section>
+
+
+
+
+  </main>
+
+</div>
+
+<script>
+/* ===========================
+   Cargar configuración previa
+=========================== */
+(function () {
+  // Tema
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+
+  // Tamaño de texto
+  let size = localStorage.getItem("fontSize");
+  if (size) {
+    document.documentElement.style.fontSize = size + "px";
+    document.getElementById("font-size").value = size;
+  }
+
+  // Fuente
+  let font = localStorage.getItem("fontFamily");
+  if (font) {
+    document.documentElement.style.fontFamily = font;
+    document.getElementById("font-family").value = font;
+  }
+
+  // Animaciones
+  let enabled = localStorage.getItem("animations");
+  if (enabled === "off") {
+    document.body.classList.add("no-anim");
+    document.getElementById("anim-toggle").checked = false;
+  } else {
+    document.getElementById("anim-toggle").checked = true;
+  }
+
+  // Intensidad
+  let intens = localStorage.getItem("animIntensity");
+  if (intens) {
+    document.documentElement.style.setProperty("--anim-scale", intens);
+    document.getElementById("anim-intensity").value = intens;
+  } else {
+    document.documentElement.style.setProperty("--anim-scale", "1");
+  }
+})();
+
+
+/* ===========================
+   Funciones
+=========================== */
+
+// Tema
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+
+// Tamaño de texto
+function cambiarTamañoTexto() {
+  let size = document.getElementById("font-size").value;
+  document.documentElement.style.fontSize = size + "px";
+  localStorage.setItem("fontSize", size);
+}
+
+// Fuente
+function cambiarFuente() {
+  let fuente = document.getElementById("font-family").value;
+  document.documentElement.style.fontFamily = fuente;
+  localStorage.setItem("fontFamily", fuente);
+}
+
+// Animaciones ON/OFF
+function toggleAnim() {
+  const activo = document.getElementById("anim-toggle").checked;
+
+  if (activo) {
+    document.body.classList.remove("no-anim");
+    localStorage.setItem("animations", "on");
+  } else {
+    document.body.classList.add("no-anim");
+    localStorage.setItem("animations", "off");
+  }
+}
+
+// Intensidad de animaciones
+function cambiarIntensidad() {
+  let intens = document.getElementById("anim-intensity").value;
+  document.documentElement.style.setProperty("--anim-scale", intens);
+  localStorage.setItem("animIntensity", intens);
+}
+
+// Reset total
+function resetConfig() {
+  localStorage.removeItem("theme");
+  localStorage.removeItem("fontSize");
+  localStorage.removeItem("fontFamily");
+  localStorage.removeItem("animations");
+  localStorage.removeItem("animIntensity");
+  location.reload();
+}
+
+</script>
+
+</body>
+</html>

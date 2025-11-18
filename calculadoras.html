@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadoras – Cálculo Vectorial</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2>Calculadoras</h2>
+    <ul>
+      <li class="sidebar-section">Unidad 1</li>
+      <li><a href="#calc-mag">Magnitud del vector</a></li>
+      <li><a href="#calc-punto">Producto Punto</a></li>
+      <li><a href="#calc-cruz">Producto Cruz</a></li>
+      <li><a href="#calc-recta">Ecuación de la recta</a></li>
+      <li><a href="#calc-plano">Plano Ax + By + Cz + D = 0</a></li>
+
+      <li class="sidebar-section">Unidad 2</li>
+      <li><a href="#calc-param">Curvas Paramétricas</a></li>
+      <li><a href="#calc-polares">Coordenadas Polares</a></li>
+
+      <li class="sidebar-section">Navegación</li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="U1.html">Unidad 1</a></li>
+      <li><a href="U2.html">Unidad 2</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="juegos.html">Minijuegos</a></li>
+      <li><a href="chat.html">Chat matemático</a></li>
+      <li><a href="config.html">Configuración</a></li>
+    </ul>
+
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro/oscuro</button>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <main class="content">
+
+    <section>
+      <h1>Calculadoras Matemáticas</h1>
+      <p>Selecciona cualquier herramienta para realizar cálculos vectoriales y de curvas.</p>
+    </section>
+
+    <!-- Magnitud -->
+    <section id="calc-mag">
+      <span class="tag">Vector</span>
+      <h2>Magnitud del vector</h2>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>X:</label><input type="number" id="vmx">
+          <label>Y:</label><input type="number" id="vmy">
+          <label>Z:</label><input type="number" id="vmz">
+          <button onclick="magnitud()">Calcular</button>
+        </div>
+        <div class="example-box" id="res-magnitud"></div>
+      </div>
+    </section>
+
+    <!-- Producto punto -->
+    <section id="calc-punto">
+      <span class="tag">Vector</span>
+      <h2>Producto Punto (a·b)</h2>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>a = (</label>
+          <input type="number" id="ax">
+          <input type="number" id="ay">
+          <input type="number" id="az">
+          <label>)</label>
+
+          <label>b = (</label>
+          <input type="number" id="bx">
+          <input type="number" id="by">
+          <input type="number" id="bz">
+          <label>)</label>
+
+          <button onclick="punto()">Calcular</button>
+        </div>
+        <div class="example-box" id="res-punto"></div>
+      </div>
+    </section>
+
+    <!-- Producto Cruz -->
+    <section id="calc-cruz">
+      <span class="tag">Vector</span>
+      <h2>Producto Cruz (a × b)</h2>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>a = (</label>
+          <input type="number" id="cax">
+          <input type="number" id="cay">
+          <input type="number" id="caz">
+          <label>)</label>
+
+          <label>b = (</label>
+          <input type="number" id="cbx">
+          <input type="number" id="cby">
+          <input type="number" id="cbz">
+          <label>)</label>
+
+          <button onclick="cruz()">Calcular</button>
+        </div>
+        <div class="example-box" id="res-cruz"></div>
+      </div>
+    </section>
+
+    <!-- Recta -->
+    <section id="calc-recta">
+      <span class="tag">Recta</span>
+      <h2>Ecuación de la recta</h2>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>Punto (x₀, y₀, z₀):</label>
+          <input type="number" id="rx0">
+          <input type="number" id="ry0">
+          <input type="number" id="rz0">
+
+          <label>Vector dirección (a, b, c):</label>
+          <input type="number" id="ra">
+          <input type="number" id="rb">
+          <input type="number" id="rc">
+
+          <button onclick="recta()">Generar</button>
+        </div>
+
+        <div class="example-box" id="res-recta"></div>
+      </div>
+    </section>
+
+    <!-- Plano -->
+    <section id="calc-plano">
+      <span class="tag">Plano</span>
+      <h2>Ecuación del plano Ax + By + Cz + D = 0</h2>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>A:</label><input type="number" id="pa">
+          <label>B:</label><input type="number" id="pb">
+          <label>C:</label><input type="number" id="pc">
+          <label>D:</label><input type="number" id="pd">
+          <button onclick="plano()">Generar</button>
+        </div>
+        <div class="example-box" id="res-plano"></div>
+      </div>
+    </section>
+
+    <!-- Paramétricas -->
+    <section id="calc-param">
+      <span class="tag">Paramétricas</span>
+      <h2>Curva Paramétrica x(t), y(t)</h2>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>x(t) =</label><input type="text" id="px" placeholder="cos(t)">
+          <label>y(t) =</label><input type="text" id="py" placeholder="sin(t)">
+          <button onclick="parametrica()">Graficar</button>
+        </div>
+        <div id="graf-param" class="sim-plot"></div>
+      </div>
+    </section>
+
+    <!-- Polares -->
+    <section id="calc-polares">
+      <span class="tag">Polar</span>
+      <h2>Curvas Polares r(θ)</h2>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label>r(θ) =</label><input type="text" id="pr" placeholder="1 + cos(t)">
+          <button onclick="polar()">Graficar</button>
+        </div>
+        <div id="graf-polar" class="sim-plot"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+/* =========================
+   FUNCIONES DE CALCULADORAS
+========================= */
+
+function magnitud() {
+ let x = document.getElementById("vmx").value;
+  let y = document.getElementById("vmy").value;
+  let z = document.getElementById("vmz").value;
+
+  if (x === "" || y === "" || z === "") return;
+
+  let m = Math.sqrt(x*x + y*y + z*z).toFixed(3);
+
+  document.getElementById("res-magnitud").innerHTML =
+    `<b>Resultado:</b> |v| = ${m}`;
+}
+
+function punto() {
+  let axv = document.getElementById("ax").value;
+  let ayv = document.getElementById("ay").value;
+  let azv = document.getElementById("az").value;
+
+  let bxv = document.getElementById("bx").value;
+  let byv = document.getElementById("by").value;
+  let bzv = document.getElementById("bz").value;
+
+  let res = axv*bxv + ayv*byv + azv*bzv;
+
+  document.getElementById("res-punto").innerHTML =
+    `<b>a·b = ${res}</b>`;
+}
+
+function cruz() {
+  let a = [
+    document.getElementById("cax").value,
+    document.getElementById("cay").value,
+    document.getElementById("caz").value
+  ];
+
+  let b = [
+    document.getElementById("cbx").value,
+    document.getElementById("cby").value,
+    document.getElementById("cbz").value
+  ];
+
+  let cx = a[1]*b[2] - a[2]*b[1];
+  let cy = a[2]*b[0] - a[0]*b[2];
+  let cz = a[0]*b[1] - a[1]*b[0];
+
+  document.getElementById("res-cruz").innerHTML =
+    `<b>a × b = (${cx}, ${cy}, ${cz})</b>`;
+}
+
+function recta() {
+  let x0 = document.getElementById("rx0").value;
+  let y0 = document.getElementById("ry0").value;
+  let z0 = document.getElementById("rz0").value;
+
+  let a = document.getElementById("ra").value;
+  let b = document.getElementById("rb").value;
+  let c = document.getElementById("rc").value;
+
+  document.getElementById("res-recta").innerHTML =
+    `<b>r = (${x0}, ${y0}, ${z0}) + t(${a}, ${b}, ${c})</b>`;
+}
+
+function plano() {
+  let A = document.getElementById("pa").value;
+  let B = document.getElementById("pb").value;
+  let C = document.getElementById("pc").value;
+  let D = document.getElementById("pd").value;
+
+  document.getElementById("res-plano").innerHTML =
+    `<b>${A}x + ${B}y + ${C}z + ${D} = 0</b>`;
+}
+
+function parametrica() {
+  let fx = document.getElementById("px").value;
+  let fy = document.getElementById("py").value;
+
+  let xs = [], ys = [];
+
+  for (let t=0; t<=6.28; t+=0.02) {
+    xs.push(eval(fx));
+    ys.push(eval(fy));
+  }
+
+  Plotly.react('graf-param',
+    [{ x: xs, y: ys, mode: 'lines' }],
+    {
+      margin:{l:40,r:10,b:40,t:10},
+      xaxis:{title:'x'},
+      yaxis:{title:'y'}
+    }
+  );
+}
+
+function polar() {
+  let fr = document.getElementById("pr").value;
+
+  let xs = [], ys = [];
+
+  for (let t=0; t<=6.28; t+=0.005) {
+    let r = eval(fr);
+    xs.push(r*Math.cos(t));
+    ys.push(r*Math.sin(t));
+  }
+
+  Plotly.react('graf-polar',
+    [{ x: xs, y: ys, mode: 'lines' }],
+    {
+      margin:{l:40,r:10,b:40,t:10},
+      xaxis:{title:'x', scaleanchor:'y'},
+      yaxis:{title:'y'}
+    }
+  );
+}
+
+</script>
+
+</body>
+</html>

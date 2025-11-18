@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidad 1 - Vectores</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h2>Unidad 1</h2>
+    <ul>
+      <li class="sidebar-section">Contenido</li>
+      <li><a href="#u1-intro">1. Vectores en el espacio</a></li>
+      <li><a href="#u1-def">1.1 Definición de vectores</a></li>
+      <li><a href="#u1-algebra">1.2 Álgebra vectorial</a></li>
+      <li><a href="#u1-prod">1.3 Producto escalar y vectorial</a></li>
+      <li><a href="#u1-recta">1.4 Ecuación de la recta</a></li>
+      <li><a href="#u1-plano">1.5 Ecuación del plano</a></li>
+      <li><a href="#u1-apl">1.6 Aplicaciones</a></li>
+
+      <li class="sidebar-section">Extras</li>
+      <li><a href="#u1-sim">Simulador vector 3D</a></li>
+      <li><a href="u2.html">Ir a Unidad 2</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="calculadoras.html">Calculadoras</a></li>
+      <li><a href="juegos.html">Minijuegos</a></li>
+      <li><a href="chat.html">Chat matemático</a></li>
+      <li><a href="config.html">Configuración</a></li>
+      <li><a href="index.html">Inicio</a></li>
+    </ul>
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro / oscuro</button>
+    </div>
+  </nav>
+
+  <main class="content">
+    <section id="u1-intro">
+      <span class="tag">Unidad 1</span>
+      <h1>Vectores en el espacio</h1>
+      <p>Los vectores en el espacio permiten representar magnitudes físicas y matemáticas que poseen
+        dirección, sentido y magnitud. Son esenciales para describir posiciones, movimientos y fuerzas tanto en 2D como en 3D.</p>
+      <div class="example-box">
+        <p>El vector <b>v = (3, 4, 0)</b> tiene magnitud
+          <span class="formula">|v| = √(3² + 4² + 0²) = 5</span>.</p>
+      </div>
+    </section>
+
+    <section id="u1-def">
+      <span class="tag">1.1</span>
+      <h2>Definición de vectores</h2>
+      <p>Un vector es un segmento orientado con magnitud, dirección y sentido. En 3D se representa
+        como <span class="formula">(x, y, z)</span>.</p>
+      <div class="example-box">
+        <h4>Ejemplos</h4>
+        <ul class="examples">
+          <li>Vector en 2D: <b>a = (2, -1)</b></li>
+          <li>Vector en 3D: <b>b = (1, 4, -3)</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="u1-algebra">
+      <span class="tag">1.2</span>
+      <h2>Álgebra vectorial</h2>
+      <p>El álgebra vectorial estudia suma, resta y multiplicación por escalar, permitiendo combinar desplazamientos
+        y fuerzas.</p>
+      <div class="example-box">
+        <p><b>Suma:</b> (2, 3) + (1, 4) = (3, 7)</p>
+        <p><b>Escalar:</b> 2 · (1, −2, 3) = (2, −4, 6)</p>
+      </div>
+    </section>
+
+    <section id="u1-prod">
+      <span class="tag">1.3</span>
+      <h2>Producto escalar y producto vectorial</h2>
+      <p>El <b>producto escalar</b> mide qué tanto un vector se proyecta sobre otro.
+         El <b>producto vectorial</b> genera un vector perpendicular a ambos.</p>
+      <div class="example-box">
+        <p>Sea <b>a = (2, 3, 0)</b>, <b>b = (1, 0, 2)</b>:</p>
+        <p><span class="formula">a · b = 2·1 + 3·0 + 0·2 = 2</span></p>
+        <p><span class="formula">a × b = (6, −4, −3)</span></p>
+      </div>
+    </section>
+
+    <section id="u1-recta">
+      <span class="tag">1.4</span>
+      <h2>Ecuación de la recta en el espacio</h2>
+      <p>Una recta en 3D puede expresarse como:</p>
+      <p class="formula">r = r₀ + t·v</p>
+      <p>donde <b>r₀</b> es un punto de la recta, <b>v</b> un vector dirección y <b>t</b> un parámetro real.</p>
+      <div class="example-box">
+        <p>Si A(1, 2, 3) y v = (2, −1, 4): <span class="formula">r = (1, 2, 3) + t(2, −1, 4)</span></p>
+      </div>
+    </section>
+
+    <section id="u1-plano">
+      <span class="tag">1.5</span>
+      <h2>Ecuación del plano</h2>
+      <p>Un plano se escribe como:</p>
+      <p class="formula">Ax + By + Cz + D = 0</p>
+      <p>donde (A, B, C) es un vector normal al plano.</p>
+      <div class="example-box">
+        <p>Si el plano pasa por (2,1,−1) y tiene normal (1,−2,3):</p>
+        <p class="formula">x − 2y + 3z + 3 = 0</p>
+      </div>
+    </section>
+
+    <section id="u1-apl">
+      <span class="tag">1.6</span>
+      <h2>Aplicaciones</h2>
+      <ul class="examples">
+        <li><b>Física:</b> fuerzas, velocidades, aceleraciones.</li>
+        <li><b>Ingeniería:</b> análisis de estructuras y movimientos.</li>
+        <li><b>Informática:</b> gráficos 3D y simulaciones.</li>
+      </ul>
+    </section>
+
+    <section id="u1-sim">
+      <span class="tag">Simulador</span>
+      <h2>Simulador interactivo: vector 3D</h2>
+      <p>Escribe las coordenadas de un vector para visualizarlo en 3D y obtener su magnitud y dirección unitaria.</p>
+      <div class="simulator-box">
+        <div class="sim-form">
+          <label for="vx">X:</label><input type="number" id="vx3" placeholder="X">
+          <label for="vy">Y:</label><input type="number" id="vy3" placeholder="Y">
+          <label for="vz">Z:</label><input type="number" id="vz3" placeholder="Z">
+          <button onclick="graficarVector3D()">Graficar</button>
+          <button onclick="limpiarVector3D()">Limpiar</button>
+        </div>
+        <div id="grafica3d" class="sim-plot"></div>
+        <div class="example-box" id="res3d"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  // Tema guardado en localStorage
+  (function () {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') document.body.classList.add('dark');
+  })();
+
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  }
+
+  // Simulador vector 3D
+  let vectores = [];
+  function graficarVector3D() {
+    const x = parseFloat(document.getElementById('vx3').value);
+    const y = parseFloat(document.getElementById('vy3').value);
+    const z = parseFloat(document.getElementById('vz3').value);
+    if (isNaN(x) || isNaN(y) || isNaN(z)) {
+      alert("Ingresa valores válidos en X, Y y Z");
+      return;
+    }
+    vectores.push({ x, y, z });
+    const data = vectores.map(v => ({
+      type: 'scatter3d',
+      mode: 'lines+markers',
+      x: [0, v.x],
+      y: [0, v.y],
+      z: [0, v.z],
+      line: { width: 6 },
+      marker: { size: 4 }
+    }));
+    const layout = {
+      margin: { l: 0, r: 0, b: 0, t: 0 },
+      scene: {
+        xaxis: { title: 'X' },
+        yaxis: { title: 'Y' },
+        zaxis: { title: 'Z' }
+      }
+    };
+    Plotly.react('grafica3d', data, layout);
+    const magnitud = Math.sqrt(x*x + y*y + z*z).toFixed(2);
+    const dir = magnitud == 0 ? '(0, 0, 0)' :
+      `(${(x/magnitud).toFixed(2)}, ${(y/magnitud).toFixed(2)}, ${(z/magnitud).toFixed(2)})`;
+    document.getElementById('res3d').innerHTML =
+      `<b>Magnitud:</b> |v| = ${magnitud} &nbsp; | &nbsp; <b>Dirección unitaria:</b> ${dir}`;
+  }
+
+  function limpiarVector3D() {
+    vectores = [];
+    ['vx3', 'vy3', 'vz3'].forEach(id => document.getElementById(id).value = "");
+    Plotly.purge('grafica3d');
+    document.getElementById('res3d').innerHTML = "";
+  }
+</script>
+</body>
+</html>

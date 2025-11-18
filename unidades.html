@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidades – Cálculo Vectorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2>Unidades</h2>
+
+    <ul>
+      <li class="sidebar-section">Secciones</li>
+      <li><a href="U1.html">Unidad 1</a></li>
+      <li><a href="U2.html">Unidad 2</a></li>
+
+      <li class="sidebar-section">Navegación</li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="calculadoras.html">Calculadoras</a></li>
+      <li><a href="juegos.html">Minijuegos</a></li>
+      <li><a href="chat.html">Chat matemático</a></li>
+      <li><a href="config.html">Configuración</a></li>
+    </ul>
+
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro/oscuro</button>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+
+    <section>
+      <h1>Unidades del Curso</h1>
+      <p>Selecciona la unidad que deseas explorar.</p>
+    </section>
+
+    <div class="unit-container">
+
+      <div class="unit-card" onclick="location.href='U1.html'">
+        <h2>Unidad 1</h2>
+        <p>Vectores • Rectas • Planos • Producto Punto • Producto Cruz</p>
+        <button>📘 Entrar</button>
+      </div>
+
+      <div class="unit-card" onclick="location.href='U2.html'">
+        <h2>Unidad 2</h2>
+        <p>Curvas Planas • Paramétricas • Coordenadas Polares</p>
+        <button>📗 Entrar</button>
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+(function () {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme',
+    document.body.classList.contains('dark') ? 'dark' : 'light'
+  );
+}
+</script>
+
+<style>
+.unit-container {
+  display: flex;
+  gap: 30px;
+  padding-top: 20px;
+  flex-wrap: wrap;
+}
+
+.unit-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  width: 280px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.unit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.unit-card h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.unit-card button {
+  margin-top: 15px;
+  background: var(--accent);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.unit-card button:hover {
+  filter: brightness(1.1);
+}
+</style>
+
+</body>
+</html>

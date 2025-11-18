@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Matemático</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2>Chat Matemático</h2>
+
+    <ul>
+      <li class="sidebar-section">Chat</li>
+      <li><a href="#chat-box">Conversación</a></li>
+
+      <li class="sidebar-section">Navegación</li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="U1.html">Unidad 1</a></li>
+      <li><a href="U2.html">Unidad 2</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="calculadoras.html">Calculadoras</a></li>
+      <li><a href="juegos.html">Minijuegos</a></li>
+      <li><a href="config.html">Configuración</a></li>
+    </ul>
+
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro/oscuro</button>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+
+    <section id="chat-box">
+      <h1>Chat Matemático 🤖</h1>
+      <p>Haz preguntas sobre vectores, rectas, planos, polares, paramétricas y más.</p>
+
+      <div class="chat-box">
+        <div id="chat-log" class="chat-log"></div>
+
+        <div class="chat-input-row">
+          <input id="chat-input" type="text" placeholder="Escribe tu pregunta aquí..." onkeypress="if(event.key==='Enter') enviarMensaje()">
+          <button onclick="enviarMensaje()">Enviar</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+/* ===========================
+   MODO OSCURO
+=========================== */
+(function () {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme',
+    document.body.classList.contains('dark') ? 'dark' : 'light'
+  );
+}
+
+/* ===========================
+   SISTEMA DEL CHAT
+=========================== */
+function enviarMensaje() {
+  const input = document.getElementById("chat-input");
+  const texto = input.value.trim();
+  if (texto === "") return;
+
+  mostrarMensaje(texto, "user");
+  input.value = "";
+
+  setTimeout(() => responder(texto), 400);
+}
+
+function mostrarMensaje(texto, tipo) {
+  const log = document.getElementById("chat-log");
+
+  const mensaje = document.createElement("div");
+  mensaje.style.margin = "8px 0";
+  mensaje.style.padding = "10px 14px";
+  mensaje.style.borderRadius = "12px";
+  mensaje.style.maxWidth = "70%";
+  mensaje.style.lineHeight = "1.4";
+
+  if (tipo === "user") {
+    mensaje.style.background = "var(--accent-soft)";
+    mensaje.style.color = "var(--accent)";
+    mensaje.style.marginLeft = "auto";
+  } else {
+    mensaje.style.background = "rgba(255,255,255,0.9)";
+    mensaje.style.color = "var(--text-soft)";
+    mensaje.style.marginRight = "auto";
+  }
+
+  mensaje.textContent = texto;
+  log.appendChild(mensaje);
+  log.scrollTop = log.scrollHeight;
+}
+
+/* ===========================
+   RESPUESTAS DEL BOT
+=========================== */
+function responder(texto) {
+  texto = texto.toLowerCase();
+
+  let r = "";
+
+  // Vectores
+  if (texto.includes("magnitud")) {
+    r = "La magnitud de un vector (x, y, z) es: √(x² + y² + z²).";
+  }
+  else if (texto.includes("unitario")) {
+    r = "Un vector unitario es u = v / |v|.";
+  }
+  else if (texto.includes("punto")) {
+    r = "El producto punto es: a·b = ax·bx + ay·by + az·bz.";
+  }
+  else if (texto.includes("cruz")) {
+    r = "El producto cruz genera un vector perpendicular a ambos.";
+  }
+  else if (texto.includes("recta")) {
+    r = "La ecuación de la recta en 3D es: r = r₀ + t·v.";
+  }
+  else if (texto.includes("plano")) {
+    r = "Ecuación del plano: Ax + By + Cz + D = 0.";
+  }
+
+  // Parábolas
+  else if (texto.includes("parabola") || texto.includes("parábola")) {
+    r = "Una parábola tiene forma y = ax² + bx + c.";
+  }
+
+  // Paramétricas
+  else if (texto.includes("parametr")) {
+    r = "Una curva paramétrica se escribe como (x(t), y(t)).";
+  }
+
+  // Polares
+  else if (texto.includes("polar")) {
+    r = "Conversión polar → cartesiana: x = r cosθ, y = r sinθ.";
+  }
+
+  // Saludos / básico
+  else if (texto.includes("hola")) {
+    r = "¡Hola! ¿En qué parte del cálculo vectorial te ayudo? 😄";
+  }
+  else if (texto.includes("gracias")) {
+    r = "¡Con gusto, bro! Aquí estoy para ayudarte 💪🙂";
+  }
+  else if (texto.includes("quien eres")) {
+    r = "Soy tu asistente matemático personalizado 😎🤖";
+  }
+  else if (texto.includes("ayuda")) {
+    r = "Puedes preguntarme sobre vectores, rectas, planos, paramétricas y polares.";
+  }
+
+  // Si no reconoce
+  else {
+    r = "No entendí muy bien 😅 pero puedo ayudarte con vectores, rectas, planos, paramétricas, polares y más.";
+  }
+
+  mostrarMensaje(r, "bot");
+}
+
+</script>
+
+</body>
+</html>

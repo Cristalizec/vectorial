@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minijuegos – Cálculo Vectorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2>Minijuegos</h2>
+
+    <ul>
+      <li class="sidebar-section">Juegos</li>
+      <li><a href="#vf">✔ Verdadero / Falso</a></li>
+      <li><a href="#opciones">✔ Opción múltiple</a></li>
+      <li><a href="#vector">✔ Completar vector</a></li>
+
+      <li class="sidebar-section">Navegación</li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="U1.html">Unidad 1</a></li>
+      <li><a href="U2.html">Unidad 2</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="calculadoras.html">Calculadoras</a></li>
+      <li><a href="chat.html">Chat matemático</a></li>
+      <li><a href="config.html">Configuración</a></li>
+    </ul>
+
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Modo claro/oscuro</button>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+
+    <section>
+      <h1>Minijuegos de Cálculo Vectorial</h1>
+      <p>Pon a prueba tus conocimientos con estos juegos interactivos.</p>
+      <p><b>Puntaje total:</b> <span id="score">0</span> 🎯</p>
+    </section>
+
+    <!-- Verdadero o Falso -->
+    <section id="vf">
+      <span class="tag">Juego 1</span>
+      <h2>Verdadero o Falso</h2>
+
+      <div class="game-card">
+        <p id="vf-pregunta">Cargando...</p>
+
+        <div class="game-options">
+          <button onclick="respuestaVF(true)">✔ Verdadero</button>
+          <button onclick="respuestaVF(false)">✘ Falso</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opción múltiple -->
+    <section id="opciones">
+      <span class="tag">Juego 2</span>
+      <h2>Opción múltiple</h2>
+
+      <div class="game-card">
+        <p id="op-pregunta">Cargando...</p>
+
+        <div id="op-opciones" class="game-options"></div>
+      </div>
+    </section>
+
+    <!-- Completar vector -->
+    <section id="vector">
+      <span class="tag">Juego 3</span>
+      <h2>Completar las coordenadas del vector</h2>
+
+      <div class="game-card">
+        <p id="vec-pregunta">Cargando...</p>
+
+        <input type="number" id="vx" placeholder="x">
+        <input type="number" id="vy" placeholder="y">
+        <input type="number" id="vz" placeholder="z">
+
+        <button onclick="respuestaVector()">Responder</button>
+
+        <div id="vec-res" class="example-box"></div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+/* ==============================
+   MODO OSCURO
+============================== */
+(function () {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+/* ==============================
+   SISTEMA DE PUNTAJE
+============================== */
+let score = 0;
+function addScore() {
+  score++;
+  document.getElementById("score").textContent = score;
+}
+
+/* ==============================
+   JUEGO 1: VERDADERO / FALSO
+============================== */
+const preguntasVF = [
+  { texto: "La magnitud del vector (3, 4) es 5.", resp: true },
+  { texto: "El producto cruz produce un número.", resp: false },
+  { texto: "Una recta en 3D tiene infinitos puntos.", resp: true },
+  { texto: "En polares, x = r·cos(θ).", resp: true },
+  { texto: "El vector (0,0,0) tiene dirección definida.", resp: false }
+];
+let actualVF = 0;
+
+function cargarVF() {
+  document.getElementById("vf-pregunta").textContent =
+    preguntasVF[actualVF].texto;
+}
+
+function respuestaVF(valor) {
+  if (valor === preguntasVF[actualVF].resp) {
+    alert("✔ Correcto!");
+    addScore();
+  } else {
+    alert("✘ Incorrecto");
+  }
+  actualVF = (actualVF + 1) % preguntasVF.length;
+  cargarVF();
+}
+
+/* ==============================
+   JUEGO 2: OPCIÓN MÚLTIPLE
+============================== */
+const preguntasOP = [
+  {
+    p: "¿Cuál es la magnitud de (1,2,2)?",
+    opciones: ["3", "√6", "√9", "4"],
+    correcta: "3"
+  },
+  {
+    p: "¿Cuál es la forma paramétrica de una recta?",
+    opciones: ["r = r₀ + t·v", "Ax + By + Cz + D = 0", "x²+y²=1"],
+    correcta: "r = r₀ + t·v"
+  },
+  {
+    p: "¿Cuál es x en coordenadas polares?",
+    opciones: ["r·sen(θ)", "r·tan(θ)", "r·cos(θ)"],
+    correcta: "r·cos(θ)"
+  }
+];
+
+let actualOP = 0;
+
+function cargarOP() {
+  document.getElementById("op-pregunta").textContent =
+    preguntasOP[actualOP].p;
+
+  let cont = document.getElementById("op-opciones");
+  cont.innerHTML = "";
+  preguntasOP[actualOP].opciones.forEach(op => {
+    let btn = document.createElement("button");
+    btn.textContent = op;
+    btn.onclick = () => respuestaOP(op);
+    cont.appendChild(btn);
+  });
+}
+
+function respuestaOP(op) {
+  if (op === preguntasOP[actualOP].correcta) {
+    alert("✔ Correcto!");
+    addScore();
+  } else {
+    alert("✘ Incorrecto");
+  }
+  actualOP = (actualOP + 1) % preguntasOP.length;
+  cargarOP();
+}
+
+/* ==============================
+   JUEGO 3: COMPLETAR VECTOR
+============================== */
+let vecActual = {
+  x: 2,
+  y: -1,
+  z: 3
+};
+
+function cargarVector() {
+  document.getElementById("vec-pregunta").textContent =
+    "Completa el vector v = (?, ?, ?)";
+}
+
+function respuestaVector() {
+  let x = document.getElementById("vx").value;
+  let y = document.getElementById("vy").value;
+  let z = document.getElementById("vz").value;
+
+  if (x == vecActual.x && y == vecActual.y && z == vecActual.z) {
+    document.getElementById("vec-res").innerHTML =
+      "<b>✔ Correcto!</b>";
+    addScore();
+  } else {
+    document.getElementById("vec-res").innerHTML =
+      `<b>✘ Incorrecto.</b> La respuesta era (${vecActual.x}, ${vecActual.y}, ${vecActual.z}).`;
+  }
+}
+
+cargarVF();
+cargarOP();
+cargarVector();
+
+</script>
+
+</body>
+</html>
